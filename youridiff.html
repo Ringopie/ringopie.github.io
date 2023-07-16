@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>Youriの休憩所 - Youri差分難易度表</title>
+	<meta charset="UTF-8">
+	<meta name="bmstable" content="./header.json">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="images/favicon.ico" rel="shortcut icon">
+	<script src="js/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+	<header>
+		<h1><a href="index.html"><img src="images/logo.jpg" alt="Youriの休憩所"></a></h1>
+		<nav>
+			<ul>
+				<li class="profile"><a href="profile.html">プロフィール</a></li>
+				<li class="bms"><a href="bms.html">BMS</a></li>
+				<li class="bmsdiff"><a href="youridiff.html">BMS差分(難易度表)</a></li>
+				<li class="link"><a href="link.html">リンク集　</a></li>
+				<li class="contact"><a href="contact.html">お問い合わせ</a></li>
+			</ul>
+		</nav>
+	</header>
+	<div id="main">
+		<h1 class="bmsdiff">BMS差分</h1>
+		<p>
+			自分で作った差分を入れていきます。<br>
+			本体作者をクリックすると本体DLページ、<br>
+			差分作者をクリックすると差分DLページに行けるようになってます。<br>
+			OneDriveにミラーをおいてます、ご利用ください。<br>
+			<a href="https://onedrive.live.com/?authkey=%21AJPxNbIEycQiCWY&id=7826B62F58DD8181%21261&cid=7826B62F58DD8181">
+				ここをクリックするとOneDriveにいけます。
+			</a>
+		</p>
+		<p>
+			テンプレート使用。<br>
+			beatoraja、GLAssist、BeMusicSeeker対応。
+		</p>
+		<p>
+			難易度はLUXURY氏のSatellite難易度表と同じ基準です<br>
+			(Yr0=sl0=(通常)☆11~☆12)<br>
+			難易度は自分で決めてるので多少の個人差はあると思います。
+		</p>
+		<!--ここから難易度表本体-->
+		<div class="tableflame">
+			<table align="center" cellspacing="1" cellpadding=2　border="0" bgcolor="#000000" id="table_int">
+				<script language="javascript" type="text/javascript">
+					$(document).ready(function(){
+						$.getJSON($("meta[name=bmstable]").attr("content"), function(header){
+							$.getJSON(header.data_url, function(information){
+								makeBMSTable(information,header.symbol);
+							});
+						});
+					});
+					
+					function makeBMSTable(info, mark) {
+						var x = "";
+						var ev = "";
+						var count = 0;
+						var obj = $("#table_int");
+						// 表のクリア
+						obj.html("");
+						$("<tr height='20' style='color:white;background-color:#666666'><td align='center'>LV</td><td align='center'>タイトル</td><td align='center'>作者</td><td align='center'>DLリンク</td><td align='center'>コメント</td></tr>").appendTo(obj);
+						var obj_sep = null;
+						for (var i = 0; i < info.length; i++) {
+							// 難度ごとの区切り
+							if (x != info[i].level) {
+								// 前の区切りに譜面数、平均密度を追加
+								if (obj_sep != null) {
+									obj_sep.html("<td colspan='6' align='center'>" + "<b>" + mark + x + " (" + count + "譜面)</b></td>");
+								}
+								obj_sep = $("<tr class='tr_separate' id='" + mark + info[i].level + "'></tr>");
+								obj_sep.appendTo(obj);
+								count = 0;
+								x = info[i].level;
+							}
+							// 本文
+							var str = $("<tr class='tr_normal'></tr>");
+							if(info[i].state == 1) {
+								str = $("<tr class='tr_new'></tr>");
+							}
+							if(info[i].state == 2) {
+								str = $("<tr class='tr_update'></tr>");
+							}
+							// レベル表記
+							$("<td width='5%'>" + mark + x + "</td>").appendTo(str);
+							// タイトル
+							$("<td width='20%'>" + "<a href='http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=ranking&bmsmd5=" + info[i].md5 + "' target='_blank'>" + info[i].title + "</a></td>").appendTo(str);
+							// アーティスト
+							var astr = "";
+							if(info[i].url != null) {
+								if(info[i].artist != null) {
+									astr = "<a href='" + info[i].url + "'>" + info[i].artist + "</a>";
+								} else {
+									astr = "<a href='" + info[i].url + "'>" + info[i].url + "</a>";
+								}
+							} else {
+								if(info[i].artist != null) {
+									astr = info[i].artist;
+								}
+							}
+							if(info[i].url_pack != null) {
+								if(info[i].name_pack != null) {
+									astr += "<br />(<a href='" + info[i].url_pack + "'>" + info[i].name_pack + "</a>)";
+								} else {
+									astr += "<br />(<a href='" + info[i].url_pack + "'>" + info[i].url_pack + "</a>)";
+								}
+							} else {
+								if(info[i].name_pack != null) {
+									astr += "<br />(" + info[i].name_pack + ")";
+								}
+							}
+							$("<td width='20%'>" + astr + "</td>").appendTo(str);
+							// 差分
+							if(info[i].url_diff != null) {
+								if(info[i].name_diff != null) {
+									$("<td width='10%'><a href='" + info[i].url_diff + "'>" + info[i].name_diff + "</a></td>").appendTo(str);
+								} else {
+									$("<td width='10%'><a href='" + info[i].url_diff + "'>" + info[i].url_diff + "</a></td>").appendTo(str);
+								}
+							} else {
+								if(info[i].name_diff != null) {
+									$("<td width='10%'>" + info[i].name_diff + "</td>").appendTo(str);
+								} else {
+									$("<td width='10%'></td>").appendTo(str);
+								}
+							}
+							// コメント
+							$("<td width='15%'>" + info[i].comment + "</td>").appendTo(str);
+							str.appendTo(obj);
+							count++;
+						}
+						// 最後の区切り処理
+						if (obj_sep != null) {
+							obj_sep.html("<td colspan='6' align='center'>" + "<b>" + mark + x + " (" + count + "譜面)</b></td>");
+						}
+					}
+				</script>
+			</table>
+		</div>
+	</div>
+	<footer>
+		<p><small>&copy;2023 YOURI All rights reserved.</small></p>
+	</footer>
+</body>
+</html>
