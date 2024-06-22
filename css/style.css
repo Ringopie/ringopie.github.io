@@ -47,6 +47,7 @@ nav ul li a:hover {
 .profile {
 	border-left: solid 14px #BF2300;
 }
+
 .bms {
 	border-left: solid 14px #BF8300;
 }
@@ -58,6 +59,9 @@ nav ul li a:hover {
 }
 .contact {
 	border-left: solid 14px #3DBF00;
+}
+.work {
+	border-left: solid 14px #00BFA5;
 }
 #main {
 	line-height: 1.5;
