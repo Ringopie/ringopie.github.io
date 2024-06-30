@@ -54,15 +54,16 @@ nav ul li a:hover {
 .bmsdiff {
 	border-left: solid 14px #A6A500;
 }
-.link {
+.works {
 	border-left: solid 14px #9CBF00;
 }
-.contact {
+.link {
 	border-left: solid 14px #3DBF00;
 }
-.works {
+.contact {
 	border-left: solid 14px #00BFA5;
 }
+
 #main {
 	line-height: 1.5;
 	border-radius: 50%;
