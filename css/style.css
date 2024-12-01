@@ -45,23 +45,23 @@ nav ul li a:hover {
 	background-color:aquamarine;
 }
 .profile {
-	border-left: solid 14px #BF2300;
+	border-left: solid 14px #FFC0CB;
 }
 
 .bms {
-	border-left: solid 14px #BF8300;
+	border-left: solid 14px #FFF4C0;
 }
 .bmsdiff {
-	border-left: solid 14px #A6A500;
+	border-left: solid 14px #CBFFC0;
 }
 .works {
-	border-left: solid 14px #9CBF00;
+	border-left: solid 14px #C0FFF4;
 }
 .link {
-	border-left: solid 14px #3DBF00;
+	border-left: solid 14px #C0CBFF;
 }
 .contact {
-	border-left: solid 14px #00BFA5;
+	border-left: solid 14px #F4C0FF;
 }
 
 #main {
