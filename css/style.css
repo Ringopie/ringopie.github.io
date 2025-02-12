@@ -26,42 +26,51 @@ header h1 img{
 	border: solid 4px #000000;
 }
 nav ul {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border-top: double 7px #000000;
-	border-bottom: double 7px #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+	padding: 0 14px;
+    border-top: double 7px #000000;
+    border-bottom: double 7px #000000;
 }
 nav ul li {
-	font-size: 21px;
-	list-style-type: none;
-	border-bottom: inset 7px #000000;
-	padding: 0 21px 0;
+    font-size: 21px;
+    list-style-type: none;
+    border-bottom: inset 7px #000000;
+    padding: 0 14px;
 }
 nav ul li a {
-	text-decoration: none;
+    text-decoration: none;
 }
 nav ul li a:hover {
-	background-color:aquamarine;
+    background-color: aquamarine;
 }
 .profile {
-	border-left: solid 14px #FFC0CB;
+    border-left: solid 14px #FFC0CB;
 }
-
 .bms {
-	border-left: solid 14px #FFF4C0;
+    border-left: solid 14px #FFF4C0;
 }
 .bmsdiff {
-	border-left: solid 14px #CBFFC0;
+    border-left: solid 14px #CBFFC0;
 }
 .works {
-	border-left: solid 14px #C0FFF4;
+    border-left: solid 14px #C0FFF4;
 }
 .link {
-	border-left: solid 14px #C0CBFF;
+    border-left: solid 14px #C0CBFF;
 }
 .contact {
-	border-left: solid 14px #F4C0FF;
+    border-left: solid 14px #F4C0FF;
+}
+
+/* ハンバーガーメニューのスタイル */
+#menuToggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
 }
 
 #main {
@@ -150,10 +159,23 @@ iframe {
 /* 
 	レスポンシブデザイン用
 */
-@media (max-width: 785px) {
-	nav ul, section, #imageVertical {
-		display: block;
-	}
+@media (max-width: 1024px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul.open {
+        display: block;
+    }
+
+    #menuToggle {
+        display: block;
+    }
 }
 /* 
 	難易度表用レイアウト
